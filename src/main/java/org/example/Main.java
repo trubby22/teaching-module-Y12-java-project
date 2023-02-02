@@ -12,7 +12,11 @@ public class Main {
         new Student("Charlie")
     ));
 
-    checkAttendance(students);
+//    checkAttendance(students);
+
+    Exam exam = new Exam("CS", "Java",
+        "03-02-2023", "4a");
+    System.out.println(exam);
   }
 
   private static void checkAttendance(List<Student> students) {
@@ -55,6 +59,25 @@ public class Main {
       e.printStackTrace();
     }
 
+  }
+}
+
+class Exam {
+  private String subject;
+  private String topic;
+  private String date;
+  private String period;
+
+  public Exam(String subject, String topic, String date, String period) {
+    this.subject = subject;
+    this.topic = topic;
+    this.date = date;
+    this.period = period;
+  }
+
+  @Override
+  public String toString() {
+    return "Exam on " + date + " during period " + period + " in " + subject + " (" + topic + ")";
   }
 }
 
