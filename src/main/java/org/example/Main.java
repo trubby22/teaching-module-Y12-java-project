@@ -18,8 +18,12 @@ public class Main {
         "03-02-2023", "4a");
     System.out.println(exam);
 
-    Exam exam2 = new Exam();
-    System.out.println(exam2);
+//    Exam exam2 = new Exam();
+//    System.out.println(exam2);
+
+    Exam exam3 = new Exam(students);
+    exam3.mark();
+    System.out.println(exam3);
   }
 
   private static void checkAttendance(List<Student> students) {
@@ -70,12 +74,21 @@ class Exam {
   private String topic;
   private String date;
   private String period;
+  private Map<Student, Optional<Integer>> marks = new HashMap<>();
+  private Boolean marked = false;
 
   public Exam(String subject, String topic, String date, String period) {
     this.subject = subject;
     this.topic = topic;
     this.date = date;
     this.period = period;
+  }
+
+  public Exam(List<Student> students) {
+    this();
+    for (Student student : students) {
+      marks.put(student, null);
+    }
   }
 
   public Exam() {
@@ -90,9 +103,42 @@ class Exam {
     period = scanner.next();
   }
 
-  @Override
-  public String toString() {
-    return "Exam on " + date + " during period " + period + " in " + subject + " (" + topic + ")";
+  public void mark() {
+    Scanner scanner = new Scanner(System.in);
+    for (Student student : marks.keySet()) {
+      while (true) {  // wait until the user enters either "y" or "n"
+
+        System.out.print(
+            "Please enter the mark for "
+                + student.getName()
+                + " [0-100]\n>>> ");
+        int mark = scanner.nextInt();
+        if (mark >= 0 && mark <= 100) {
+          marks.put(student, Optional.of(mark));
+          break;
+        }
+
+      }
+    }
+
+    marked = true;
+  }
+
+  @Override public String toString() {
+    String basicInfo = "Exam on " + date
+        + " during period " + period
+        + " in " + subject
+        + " (" + topic + ")";
+    if (!marked) {
+      return basicInfo;
+    }
+    basicInfo += "\nMarks:";
+    for (Student student : marks.keySet()) {
+      String name = student.getName();
+      int mark = marks.get(student).get();
+      basicInfo += "\n" + name + ": " + mark;
+    }
+    return basicInfo;
   }
 }
 
