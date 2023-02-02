@@ -17,6 +17,9 @@ public class Main {
     Exam exam = new Exam("CS", "Java",
         "03-02-2023", "4a");
     System.out.println(exam);
+
+    Exam exam2 = new Exam();
+    System.out.println(exam2);
   }
 
   private static void checkAttendance(List<Student> students) {
@@ -73,6 +76,18 @@ class Exam {
     this.topic = topic;
     this.date = date;
     this.period = period;
+  }
+
+  public Exam() {
+    Scanner scanner = new Scanner(System.in);
+    System.out.print("Enter subject\n>>> ");
+    subject = scanner.next();
+    System.out.print("Enter topic\n>>> ");
+    topic = scanner.next();
+    System.out.print("Enter date\n>>> ");
+    date = scanner.next();
+    System.out.print("Enter period\n>>> ");
+    period = scanner.next();
   }
 
   @Override
