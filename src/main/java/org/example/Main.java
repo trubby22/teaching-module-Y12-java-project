@@ -28,11 +28,9 @@ public class Main {
 
         if (response.equals("y")) {
           student.setPresent(true);
-          students.set(i, student);
           break;
         } else if (response.equals("n")) {
           student.setPresent(false);
-          students.set(i, student);
           break;
         }
 
@@ -40,9 +38,10 @@ public class Main {
     }
 
 
-    String message = "Attendance record:\n";
+    String message = "Attendance record:\n"; // even better: use a
+    // StringBuilder
     for (Student student : students) {  // enhanced for-loop
-      message += student.toString() + "\n";
+      message += student + "\n";
     }
     System.out.print(message);
 
