@@ -6,27 +6,28 @@ import java.util.*;
 public class Main {
 
   public static void main(String[] args) {
-    List<Student> students = new ArrayList<>(List.of(
-        new Student("Alice"),
-        new Student("Bob"),
-        new Student("Charlie")
-    ));
-
-//    checkAttendance(students);
-
-    Exam exam = new Exam("CS", "Java",
-        "03-02-2023", "4a");
-    System.out.println(exam);
-
-//    Exam exam2 = new Exam();
-//    System.out.println(exam2);
-
-    Exam exam3 = new Exam(students);
-    exam3.mark();
-    System.out.println(exam3);
+//    List<Student> students = new ArrayList<>(List.of(
+//        new Student("Alice"),
+//        new Student("Bob"),
+//        new Student("Charlie")
+//    ));
+//
+////    checkAttendance(students);
+//
+//    Exam exam = new Exam("CS", "Java",
+//        "03-02-2023", "4a");
+//    System.out.println(exam);
+//
+////    Exam exam2 = new Exam();
+////    System.out.println(exam2);
+//
+//    Exam exam3 = new Exam(students);
+//    exam3.mark();
+//    System.out.println(exam3);
+    new CheckAttendance().setVisible(true);
   }
 
-  private static void checkAttendance(List<Student> students) {
+  public static void checkAttendance(List<Student> students) {
     Scanner scanner = new Scanner(System.in);
     for (int i = 0; i < students.size(); i++) {
       while (true) {  // wait until the user enters either "y" or "n"
