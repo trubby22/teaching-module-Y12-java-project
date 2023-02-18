@@ -6,21 +6,56 @@ package org.example;
 
 import java.io.*;
 import java.util.*;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author piotrblaszyk
  */
 public class CheckAttendance extends javax.swing.JFrame {
-    Attendance attendance = new Attendance(new String[] { "Alice", "Bob", "Charlie" });
+    Attendance attendance;
 
     /**
      * Creates new form CheckAttendance
      */
     public CheckAttendance() {
         initComponents();
+        loadAttendance();
         studentBox.setModel(new javax.swing.DefaultComboBoxModel<>(attendance.getNames()));
+        presentBox.setSelected(attendance.getPresence(0));
     }
+
+    public void loadAttendance() {
+      try {
+        FileInputStream file = new FileInputStream("Attendance.dat");
+        ObjectInputStream inputFile = new ObjectInputStream(file);
+
+        try {
+          attendance = ((Attendance) inputFile.readObject());
+        } catch (Exception e) {
+          JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+
+        inputFile.close();
+      } catch (IOException e) {
+        JOptionPane.showMessageDialog(null, e.getMessage());
+        attendance = new Attendance(new String[] { "Alice", "Bob", "Charlie" });
+      }
+    }
+
+  public void saveAttendance() {
+    try {
+      FileOutputStream file = new FileOutputStream("Attendance.dat");
+      ObjectOutputStream outputFile = new ObjectOutputStream(file);
+
+      outputFile.writeObject(attendance);
+      outputFile.close();
+
+      JOptionPane.showMessageDialog(null, "Successfully saved");
+    } catch (IOException e) {
+      JOptionPane.showMessageDialog(null, e.getMessage());
+    }
+  }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -116,6 +151,7 @@ public class CheckAttendance extends javax.swing.JFrame {
     private void submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitActionPerformed
         // TODO add your handling code here:
         attendance.printAttendance();
+        saveAttendance();
     }//GEN-LAST:event_submitActionPerformed
 
     /**
