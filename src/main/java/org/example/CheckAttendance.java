@@ -12,30 +12,14 @@ import java.util.*;
  * @author piotrblaszyk
  */
 public class CheckAttendance extends javax.swing.JFrame {
-    
-    String[] names = new String[] { "Alice", "Bob", "Charlie" };
-    Map<String, Boolean> presence = new HashMap<>();
+    Attendance attendance = new Attendance(new String[] { "Alice", "Bob", "Charlie" });
 
     /**
      * Creates new form CheckAttendance
      */
     public CheckAttendance() {
         initComponents();
-        
-        for (String name : names) {
-            presence.put(name, false);
-        }
-        studentBox.setModel(new javax.swing.DefaultComboBoxModel<>(names));
-    }
-    
-    public void printAttendance() {
-        String message = "";
-        for (String name : names) {  // enhanced for-loop
-            boolean present = presence.get(name);
-            String status = present ? "present" : "absent";
-          message += name + ": " + status + "\n";
-        }
-        System.out.print(message);
+        studentBox.setModel(new javax.swing.DefaultComboBoxModel<>(attendance.getNames()));
     }
 
     /**
@@ -119,20 +103,19 @@ public class CheckAttendance extends javax.swing.JFrame {
     private void presentBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_presentBoxActionPerformed
         // TODO add your handling code here:
         int index = studentBox.getSelectedIndex();
-        String name = names[index];
-        presence.put(name, presentBox.isSelected());
+        attendance.setPresence(index, presentBox.isSelected());
     }//GEN-LAST:event_presentBoxActionPerformed
 
     private void studentBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentBoxActionPerformed
         // TODO add your handling code here:
         int index = studentBox.getSelectedIndex();
-        boolean selected = presence.get(names[index]);
+        boolean selected = attendance.getPresence(index);
         presentBox.setSelected(selected);
     }//GEN-LAST:event_studentBoxActionPerformed
 
     private void submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitActionPerformed
         // TODO add your handling code here:
-        printAttendance();
+        attendance.printAttendance();
     }//GEN-LAST:event_submitActionPerformed
 
     /**
