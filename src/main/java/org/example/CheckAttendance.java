@@ -29,25 +29,13 @@ public class CheckAttendance extends javax.swing.JFrame {
     }
     
     public void printAttendance() {
-
-        String message = "Attendance record:\n";
+        String message = "";
         for (String name : names) {  // enhanced for-loop
             boolean present = presence.get(name);
             String status = present ? "present" : "absent";
           message += name + ": " + status + "\n";
         }
         System.out.print(message);
-
-        FileWriter fileWriter;
-        try {
-          fileWriter = new FileWriter("attendance-record.txt");
-          PrintWriter writer = new PrintWriter(fileWriter);
-          writer.println(message);
-          writer.close();
-        } catch (IOException e) {
-          e.printStackTrace();
-        }
-
     }
 
     /**
