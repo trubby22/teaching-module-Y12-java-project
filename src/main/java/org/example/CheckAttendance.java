@@ -73,6 +73,7 @@ public class CheckAttendance extends javax.swing.JFrame {
         presentBox = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setAutoRequestFocus(false);
 
         studentBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alice", "Bob", "Charlie" }));
         studentBox.addActionListener(new java.awt.event.ActionListener() {
