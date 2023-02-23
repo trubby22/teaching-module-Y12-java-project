@@ -42,7 +42,7 @@ public class StudentList extends javax.swing.JFrame {
         edit = new javax.swing.JButton();
         add = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         box.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alice", "Bob", "Charlie" }));
 

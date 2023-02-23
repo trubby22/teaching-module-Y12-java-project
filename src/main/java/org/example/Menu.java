@@ -85,6 +85,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void modifyStudentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyStudentsActionPerformed
         // TODO add your handling code here:
+        new StudentList().setVisible(true);
     }//GEN-LAST:event_modifyStudentsActionPerformed
 
     private void checkAttendanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkAttendanceActionPerformed
